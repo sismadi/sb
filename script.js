@@ -36,7 +36,7 @@ const web = {
         if (slug !== undefined) {
             window.history.pushState({ path: currentPath }, '', `?${currentPath}`);
         }
-        document.title = `Sismadi | ${targetSlug.toUpperCase()}`;
+        document.title = `Wawan Sismadi | ${targetSlug.toUpperCase()}`;
         window.scrollTo(0, 0);
         if (typeof svg?.di === 'function') svg.di();
 
@@ -137,6 +137,7 @@ const components = {
                 const [title, content] = val.split(':');
                 return `<div class="info-card"><strong>${title}</strong><p>${content}</p></div>`;
             },
+
             'table:': (val) => {
                 let dataTable = context.table;
                 if (val) { try { dataTable = JSON.parse(val); } catch(e) { console.error("Table Error"); } }
@@ -147,6 +148,34 @@ const components = {
                     <tbody>${dataTable.map(row => `<tr>${keys.map(k => `<td>${row[k]}</td>`).join('')}</tr>`).join('')}</tbody>
                 </table></div>`;
             },
+
+            'table:': (val) => {
+                let dataTable = null;
+                if (val) {
+                    // 1. Cek apakah val adalah key yang ada di context (referensi parameter)
+                    if (context[val] && Array.isArray(context[val])) {
+                        dataTable = context[val];
+                    }
+                    // 2. Fallback: Parse sebagai JSON string inline
+                    else {
+                        try {
+                            const parsed = JSON.parse(val);
+                            if (Array.isArray(parsed)) dataTable = parsed;
+                        } catch(e) {
+                            return `<div class="info-card">⚠ Tabel tidak ditemukan atau format salah</div>`;
+                        }
+                    }
+                }
+                if (!dataTable?.length) return '';
+
+                const keys = Object.keys(dataTable[0]);
+                return `<div class="table-container"><table>
+                    <thead><tr>${keys.map(k => `<th>${k.toUpperCase()}</th>`).join('')}</tr></thead>
+                    <tbody>${dataTable.map(row => `<tr>${keys.map(k => `<td>${row[k] ?? ''}</td>`).join('')}</tr>`).join('')}</tbody>
+                </table></div>`;
+            },
+
+
             'contact:': (val) => {
                 const [icon, label, info, link] = val.split('|');
                 return `

@@ -34,7 +34,7 @@
   --radius-lg: 8px;
 
 
- 
+
 --sv-ph-p:  #DF8C43;   /* Point  — amber  */
 --sv-ph-r:  #5DCAA5;   /* Reason — teal   */
 --sv-ph-e:  #AFA9EC;   /* Example — violet */
@@ -210,7 +210,7 @@ input:not([type=checkbox]):not([type=radio]), select, textarea {
 }
 
 .skill-track { background: #eee; border-radius: 10px; height: 8px; margin: 8px 0; overflow: hidden; }
-.skill-fill { background: var(--pColor); height: 100%; transition: width 0.8s ease; }
+.skill-fill { background: var(--pColor); height: 100%;  transition: width 0.8s ease; }
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
@@ -433,4 +433,74 @@ input:not([type=checkbox]):not([type=radio]), select, textarea {
   .sv-slide { padding: 20px 16px; }
   .sv-h2 { font-size: 18px; }
   .sv-cards { grid-template-columns: 1fr; }
+}
+
+
+
+/* Certificate - Simple & Clean */
+.cert-border {
+    max-width: 800px;
+    text-align: center;
+}
+
+.cert-border h1 {
+    font-size: 36px;
+  }
+
+.cert-name {
+    font-size: 42px;
+     font-weight: bold;
+    margin: 20px 0;
+}
+
+.cert-score {
+     font-size: 24px;
+    padding: 15px 30px;
+}
+
+.cert-border p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.cert-border small {
+    display: block;
+    margin-top: 20px;
+    color: #666;
+}
+
+
+/* Print */
+@media print {
+    .no-print { display: none; }
+    .cert-border {
+        border: 5px solid #1D5C7C;
+        margin: 0;
+    }
+}
+
+
+.table-container {
+    overflow-x: auto;
+    margin: 20px 0;
+    text-align: center;
+}
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    font-size: 14px;
+}
+.table-container th {
+    background: var(--pDarkColor);
+    color: #fff;
+    padding: 10px;
+    font-weight: 600;
+}
+.table-container td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+.table-container tr:hover {
+    background: rgba(0,115,142,0.05);
 }
