@@ -36,7 +36,7 @@ const web = {
         if (slug !== undefined) {
             window.history.pushState({ path: currentPath }, '', `?${currentPath}`);
         }
-        document.title = `DIFA3 | ${targetSlug.toUpperCase()}`;
+        document.title = `Sismadi | ${targetSlug.toUpperCase()}`;
         window.scrollTo(0, 0);
         if (typeof svg?.di === 'function') svg.di();
 
